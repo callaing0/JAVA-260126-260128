@@ -4,23 +4,26 @@
 1.1 HTML 기본 구조 (단축키 : !+Enter)
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<html lang="en"> : HTML 언어 설정
+<head> : HTML 설명 or 설정 작성
+    <meta charset="UTF-8"> : 글자 깨짐 방지용 설정
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    : 휴대폰, 태블릿 크기에 맞게 보이도록 하는 설정 (반응형 웹 제작 시 필수)
+    <title>Document</title> : 브라우저 탭에 표시되는 제목 (크롬 탭 위에 보이는 글자)
 </head>
-<body>
-    
+<body> : 브라우저 내용 작성(View)
+         <body>의 내용은 <태그>를 이용하여 작성
+
+            블럭 태크 (영역을 가질 수 있음, 높이와 너비를 설정할 수 있음)
+            * <h1> ~ <h6> 
+            : 제목을 표현하고자 할때 사용. 숫자가 클수록 글자 크기가 작아지며 기본적으로 굵기를 전부 가지고 있음
+               영역 설정 EX) <h1 style="height:100px;"> </h1>
+
+            인라인 태크 (영역을 가질 수 없음, 높이와 너비를 설정할 수 없음)
+            * <span> 
 </body>
 </html>
 
 1-2. CSS (HTML 사진, 모션 등 삽입 기능)
-<style> </style>
-
-
 1.3 JavaScript (HTML 동작 기능)
-
-
-
-1. JavaFramework
+1.4 JavaFramework
