@@ -67,14 +67,22 @@ create table member
                                   2. 두번째 테이블
                                   create table trophy_list
                                   기본키 id int not null auto_increment,
-                                  업적 확인용 member_id int Foreign Key(member 테이블의 primary key 적용, 외래키),
+                                  업적 확인용 member_id int Foreign Key(member 테이블의 primary key 적용, 외래 키),
                                   업적목록 trophy varchar(255), 
 
-                                  * 외래키는 상황에 따라 있을 수도 없을 수도 있음.
-                                    제 1 정규화 =/= 외래기 발생
+                                  * 외래 키는 상황에 따라 있을 수도 없을 수도 있음.
+                                    제 1 정규화 = 외래 키 발생이 아님
+
+                                  * 주의사항 : 중복이 하나도 없는 테이블 작성(X) 중복 최소화 테이블 작성(O)
 
 
-          + 제 2 정규화 (2NF) : 1NF를 만족하고, 기본키가 아닌 모든 속성이 기본키에 완전 함수 종속.
+          + 제 2 정규화 (2NF) : 1NF를 만족하고, 모든 컬럼이 기본키에 완전 종속. (중복 제거)
+
+
+
+
+
+
 
           + 제 3 정규화 (3NF) : 2NF를 만족하고, A > B 이고 B > C 일 때 A > C 가 성립하는 관계를 끊어내는 것.
                                즉, 결정자가 아닌 일반 속성들 간의 종속성을 제거. 
