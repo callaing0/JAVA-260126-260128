@@ -54,7 +54,11 @@ create table member
                                 
                                 EX, 업적 목록의 경우, 다양한 업적을 가실 수 있기 때문에 업적 목록이라는 별도의 테이블 생성.
 
-                                  1. 첫번째 테이블
+                                  1. 기본 테이블
+
+                                  ID | email | password | nick_name | birth_date | image | ranking | trophy
+                                  1    navwer    1234        kimu       001010     0.jpg      1      PVP, PVE
+                                 
                                   create table member
                                   기본키 id int not null auto_increment primary key,
                                   이메일 mail varchar(255) not null,
@@ -63,8 +67,26 @@ create table member
                                   생년월일 birth_date not null, 
                                   이미지 image varchar(255), 
                                   랭킹 ranking int,
+                                  업적목록 trophy varchar(255), 
                                   
-                                  2. 두번째 테이블
+                                  2. 제 1 정규화 적용 테이블
+
+                                  ID | email | password | nick_name | birth_date | image | ranking |
+                                  1    navwer    1234        kimu       001010     0.jpg   PVP, PVE
+
+                                  ID | member_id | trophy |
+                                  1        1        PVP
+                                  2        1        PVE
+
+                                  create table member
+                                  기본키 id int not null auto_increment primary key,
+                                  이메일 mail varchar(255) not null,
+                                  비밀번호 password varchar(255) not null,
+                                  닉네임 nick_name varchar(50) not null,
+                                  생년월일 birth_date not null, 
+                                  이미지 image varchar(255), 
+                                  랭킹 ranking int,
+
                                   create table trophy_list
                                   기본키 id int not null auto_increment,
                                   업적 확인용 member_id int Foreign Key(member 테이블의 primary key 적용, 외래 키),
@@ -78,9 +100,30 @@ create table member
 
           + 제 2 정규화 (2NF) : 1NF를 만족하고, 모든 컬럼이 기본키에만 의존하게 만드는 것.
 
+                  * 종속 판별 
+                      1. A값이 같으면 B값도 항상 같은지
+                          EX, ID, student_ID, student_name 컬럼이 있다면 student_ID > student_name이 성립되는지
 
+                          ID | student_ID | student_name 
+                          1        10         김철수
+                          2        20         김철수          일 때,  student_ID: 10번을 조회할 때 무조건 김철수만 검색 (종속 O)
+                          3        30         이영희                  student_name: 김철수를 조회할 때  student_ID: 10번, 20번 검색 (종속 X)
 
+                      2. A 하나만으로 B를 결정할 수 있는지 
+                          EX, ID | student_ID | student_name | Score
+                              1         10          김철수       90
+                              2         20          김철수       80       일 때, student_ID로 Score를 뽑아낼 수 없음 그 반대 역시 불가
+                              3         10          이영희       80              (같은 ID와 점수가 있어서 뽑아낼 수 없음, 종속 X)
 
+                      3. 예외 케이스가 존재하는지  
+                          종속은 항상 있어야 함, 예외가 존재할 수 없음. (있다면 DB 설계 오류 or 데이터 입력 오류 or 업무 규칙 문제)
+                          EX, ID | student_ID | student_name | Score
+                              1         10          김철수       90
+                              2         20          김철수       80       일 때, student_ID: 10번 일때, 이순신이라는 예외가 존재
+                              3         10          이순신       80              (대부분 김철수라는 형태 생성, 종속 X)
+                              4         10          김철수       70
+
+                      종합적으로 말하자면 ** 항상 하나로 정해지면 종속!**
 
 
 
