@@ -57,7 +57,7 @@ create table member
                                   1. 기본 테이블
 
                                   ID | email | password | nick_name | birth_date | image | ranking | trophy
-                                  1    navwer    1234        kimu       001010     0.jpg      1      PVP, PVE
+                                  1    naver    1234        kimu       001010     0.jpg      1        PVP, PVE
                                  
                                   create table member
                                   기본키 id int not null auto_increment primary key,
@@ -72,7 +72,7 @@ create table member
                                   2. 제 1 정규화 적용 테이블
 
                                   ID | email | password | nick_name | birth_date | image | ranking |
-                                  1    navwer    1234        kimu       001010     0.jpg   PVP, PVE
+                                  1    naver    1234        kimu        001010      0.jpg     1
 
                                   ID | member_id | trophy |
                                   1        1        PVP
